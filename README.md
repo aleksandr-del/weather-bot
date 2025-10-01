@@ -1,1 +1,1 @@
-wether-bot
+weather-bot
