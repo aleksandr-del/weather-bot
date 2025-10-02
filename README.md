@@ -37,17 +37,19 @@ cd weather-bot
 BOT_TOKEN=ваш_токен_бота
 WEATHER_API_KEY=ваш_api_ключ_погоды
 USER_IDS=123456789,987654321  # Список user_id, которые могут использовать бота
-
+```
 
 5. Установите зависимости:
 
+```
 pip install -r requirements.txt
-
+```
 
 6. Запустите бота:
 
+```
 python main.py
-
+```
 
 ---
 
@@ -61,6 +63,7 @@ python main.py
 
 ## Структура проекта
 
+```
 .
 ├── main.py # Точка входа, запуск бота и установка роутеров
 ├── handlers/ # Обработчики команд и сообщений
@@ -78,7 +81,7 @@ python main.py
 │ └── logging_config.py
 ├── requirements.txt # Зависимости проекта
 └── README.md # Текущая документация
-
+```
 
 ---
 
