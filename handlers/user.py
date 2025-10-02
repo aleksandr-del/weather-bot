@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from aiogram.types import Message
+from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from keyboard.keyboard import keyboard
@@ -23,8 +23,8 @@ async def proces_forecast_command(
     message: Message, api_key: str = config.weather.api_key
 ):
     city = message.text
-    text = get_weather_forecast(api_key, city)
+    text = await get_weather_forecast(api_key, city)
     if text:
-        await message.answer(text=text)
+        await message.answer(text=text, reply_markup=ReplyKeyboardRemove())
     else:
         await message.answer(text="Не удалось получить прогноз погоды.")

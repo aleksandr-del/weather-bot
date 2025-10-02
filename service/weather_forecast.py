@@ -8,7 +8,6 @@ def _create_message(data: dict) -> str:
     forecast = data["forecast"]["forecastday"]
 
     message = f"""🌤️  Прогноз погоды для {location["name"]}
-{"=" * 30}
 
 📅 СЕГОДНЯ ({forecast[0]["date"]})
    🌡️  Температура: {current["temp_c"]}°C
@@ -28,7 +27,7 @@ def _create_message(data: dict) -> str:
     return message
 
 
-def get_weather_forecast(api_key: str, city: str) -> str | None:
+async def get_weather_forecast(api_key: str, city: str) -> str | None:
     base_url = "http://api.weatherapi.com/v1"
     api_method = "/forecast.json"
     params = {
@@ -80,5 +79,4 @@ def get_weather_forecast(api_key: str, city: str) -> str | None:
         return _create_message(filtered_data)
 
     except HTTPError as err:
-        logger.error(err)
-        return
+        return None
