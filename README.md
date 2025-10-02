@@ -27,9 +27,10 @@
 2. Получите API ключ для сервиса погоды (например, [WeatherAPI](https://www.weatherapi.com/))
 3. Клонируйте репозиторий:
 
+```
 git clone https://github.com/aleksandr-del/weather-bot.git
-
 cd weather-bot
+```
 
 4. Создайте файл `.env` в корне проекта и добавьте:
 
