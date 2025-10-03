@@ -2,14 +2,12 @@
 
 
 from aiogram.types import Message, ReplyKeyboardRemove
-from aiogram import Router, F
+from aiogram import Router
 from aiogram.filters import CommandStart
 from keyboard.keyboard import keyboard
-from keyboard.cities import cities
-from config.config import Config, load_config
 from service.weather_forecast import get_weather_forecast
+from filters.filters import CitiesFilter
 
-config: Config = load_config(".env")
 router = Router(name=__name__)
 
 
@@ -18,10 +16,8 @@ async def process_start_command(message: Message):
     await message.answer(text="Узнай прогноз погоды!", reply_markup=keyboard)
 
 
-@router.message(F.text.in_(cities))
-async def proces_forecast_command(
-    message: Message, api_key: str = config.weather.api_key
-):
+@router.message(CitiesFilter())
+async def proces_forecast_command(message: Message, api_key: str):
     city = message.text
     text = await get_weather_forecast(api_key, city)
     if text:

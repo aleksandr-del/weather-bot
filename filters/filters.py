@@ -9,3 +9,8 @@ class UserFilter(BaseFilter):
 
     async def __call__(self, message: Message) -> bool:
         return message.from_user.id in self.user_ids
+
+
+class CitiesFilter(BaseFilter):
+    async def __call__(self, message: Message, cities: list[str]):
+        return message.text in cities

@@ -6,7 +6,7 @@ import logging
 import logging.config
 from config.config import Config, load_config
 from handlers import user
-from filters.filter import UserFilter
+from filters.filters import UserFilter
 from aiogram import Bot, Dispatcher
 import asyncio
 
@@ -16,6 +16,9 @@ logger = logging.getLogger("logger")
 config: Config = load_config("./.env")
 bot = Bot(config.bot.token)
 dp = Dispatcher()
+dp.workflow_data.update(
+    {"api_key": config.weather.api_key, "cities": config.cities.cities}
+)
 dp.message.filter(UserFilter(config.bot.user_ids))
 dp.include_routers(user.router)
 

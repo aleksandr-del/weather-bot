@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from environs import Env
+from keyboard.cities import cities
 
 
 @dataclass
@@ -14,9 +15,15 @@ class Weather:
 
 
 @dataclass
+class Cities:
+    cities: list[str]
+
+
+@dataclass
 class Config:
     bot: TelegramBot
     weather: Weather
+    cities: Cities
 
 
 def load_config(path: str | None = None) -> Config:
@@ -31,4 +38,5 @@ def load_config(path: str | None = None) -> Config:
             ),
         ),
         weather=Weather(api_key=env("WEATHER_API_KEY")),
+        cities=Cities(cities=cities),
     )
